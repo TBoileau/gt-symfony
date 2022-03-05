@@ -25,6 +25,7 @@
         "symfony/http-client": "6.0.*",
         "symfony/intl": "6.0.*",
         "symfony/mailer": "6.0.*",
+        "symfony/messenger": "6.0.*",
         "symfony/mime": "6.0.*",
         "symfony/monolog-bundle": "^3.0",
         "symfony/notifier": "6.0.*",
@@ -38,12 +39,14 @@
         "symfony/string": "6.0.*",
         "symfony/translation": "6.0.*",
         "symfony/twig-bundle": "6.0.*",
+        "symfony/uid": "6.0.*",
         "symfony/validator": "6.0.*",
         "symfony/web-link": "6.0.*",
         "symfony/webapp-meta": "^1.0",
         "symfony/webpack-encore-bundle": "^1.12",
         "symfony/yaml": "6.0.*",
         "twig/extra-bundle": "^2.12|^3.0",
+        "twig/string-extra": "^3.3",
         "twig/twig": "^2.12|^3.0"
     },
     "config": {
@@ -77,6 +80,19 @@
         "symfony/polyfill-php80": "*"
     },
     "scripts": {
+        "prepare": [
+            "bin/console doctrine:database:drop -f",
+            "bin/console doctrine:database:create",
+            "bin/console doctrine:schema:update -f",
+            "bin/console doctrine:fixtures:load -n"
+        ],
+        "test": [
+            "bin/console doctrine:database:drop -f -e test",
+            "bin/console doctrine:database:create -e test",
+            "bin/console doctrine:schema:update -f -e test",
+            "bin/console doctrine:fixtures:load -n -e test",
+            "bin/phpunit"
+        ],
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
@@ -98,8 +114,15 @@
         }
     },
     "require-dev": {
+        "dama/doctrine-test-bundle": "^6.7",
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
+        "fakerphp/faker": "^1.19",
+        "phpunit/phpunit": "^9.5",
+        "symfony/browser-kit": "6.0.*",
+        "symfony/css-selector": "6.0.*",
         "symfony/debug-bundle": "6.0.*",
         "symfony/maker-bundle": "^1.0",
+        "symfony/phpunit-bridge": "^6.0",
         "symfony/stopwatch": "6.0.*",
         "symfony/web-profiler-bundle": "6.0.*"
     }

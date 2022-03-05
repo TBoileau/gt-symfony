@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main class="container">
+        <div class="row">
+            <div class="col-12 mb-4">
+                <h1>Publier un nouvel article</h1>
+            </div>
+            <div class="col-12">
+                {{ form_start(form) }}
+                    {{ form_row(form.title) }}
+                    {{ form_row(form.category) }}
+                    {{ form_row(form.content) }}
+                    {{ form_row(form.tags) }}
+                    {{ form_row(form.imageFile) }}
+                    <div>
+                        <button class="btn btn-primary">Créer</button>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </main>
+{% endblock %}

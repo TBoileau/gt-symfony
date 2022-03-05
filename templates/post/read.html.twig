@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main class="container">
+        <div class="row">
+            <div class="col-12 col-lg-4 col-xl-3">
+                <img src="{{ asset('uploads/' ~ post.image) }}" class="mw-100" alt="{{ post.title }}">
+            </div>
+            <div class="col-12 col-lg-8 col-xl-9">
+                <h1>{{ post.title }}</h1>
+                <span class="text-muted small">Publié le {{ post.publishedAt|date('d/m/Y H:i') }} par {{ post.user.nickname }}</span>
+                <p class="m-0 my-2">{{ post.content|u.truncate(50, '...', false) }}</p>
+                {% if is_granted('edit', post) %}
+                    <div class="d-flex justify-content-end gap-3">
+                        <a href="{{ path('post_update', {id: post.id}) }}" class="btn btn-outline-primary">Modifier</a>
+                        <form method="post" action="{{ path('post_delete', {id: post.id}) }}">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token('delete_post') }}"/>
+                            <button class="btn btn-outline-primary">Supprimer</button>
+                        </form>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+{% endblock %}

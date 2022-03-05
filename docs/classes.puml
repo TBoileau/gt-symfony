@@ -1,0 +1,10 @@
+@startuml
+class Post
+class Category
+class Tag
+class User
+
+Post "Many" --- "One" Category : To
+Post "Many" --- "One" User : To
+Post "Many" --- "Many" Tag : To
+@enduml
