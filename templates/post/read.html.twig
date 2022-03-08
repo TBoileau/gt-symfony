@@ -14,7 +14,7 @@
                     <div class="d-flex justify-content-end gap-3">
                         <a href="{{ path('post_update', {id: post.id}) }}" class="btn btn-outline-primary">Modifier</a>
                         <form method="post" action="{{ path('post_delete', {id: post.id}) }}">
-                            <input type="hidden" name="csrf_token" value="{{ csrf_token('delete_post') }}"/>
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token('delete-post') }}"/>
                             <button class="btn btn-outline-primary">Supprimer</button>
                         </form>
                     </div>

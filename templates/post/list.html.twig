@@ -9,7 +9,7 @@
                     <a href="{{ path('post_create') }}" class="btn btn-primary">Publier</a>
                 {% endif %}
             </div>
-            {% for post in vm.posts %}
+            {% for post in posts %}
                 <div class="col-12 col-lg-4 col-xl-3 mb-4">
                     <article class="card h-100">
                         <a href="{{ path('post_read', {id: post.id}) }}">
@@ -30,19 +30,19 @@
             <div class="col-12">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">
-                        {% if vm.pagination.page > 1 %}
+                        {% if pagination.page > 1 %}
                             <li class="page-item">
-                                <a class="page-link" href="{{ path('post_list', {page: vm.pagination.page - 1}) }}" aria-label="Previous">
+                                <a class="page-link" href="{{ path('post_list', {page: pagination.page - 1}) }}" aria-label="Previous">
                                     <span aria-hidden="true">&laquo;</span>
                                 </a>
                             </li>
                         {% endif %}
-                        {% for p in vm.pagination.range %}
-                            <li class="page-item {{ vm.pagination.page == p ? 'active' }}"><a class="page-link" href="{{ path('post_list', {page: p}) }}">{{ p }}</a></li>
+                        {% for p in pagination.range %}
+                            <li class="page-item {{ pagination.page == p ? 'active' }}"><a class="page-link" href="{{ path('post_list', {page: p}) }}">{{ p }}</a></li>
                         {% endfor %}
-                        {% if vm.pagination.page < vm.pagination.pages %}
+                        {% if pagination.page < pagination.pages %}
                             <li class="page-item">
-                                <a class="page-link" href="{{ path('post_list', {page: vm.pagination.page + 1}) }}" aria-label="Next">
+                                <a class="page-link" href="{{ path('post_list', {page: pagination.page + 1}) }}" aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
                                 </a>
                             </li>
